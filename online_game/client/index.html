@@ -11,6 +11,11 @@
         flex-direction: column;
         height: 100vh;
       }
+      #gameCanvas {
+        flex: 1;
+        background: #222;
+      }
+
       #log {
         flex: 1;
         overflow-y: auto;
@@ -27,6 +32,7 @@
     </style>
   </head>
   <body>
+    <canvas id="gameCanvas" width="500" height="500"></canvas>
     <div id="log"></div>
     <form id="form">
       <input id="input" placeholder="Type message..." autocomplete="off" />

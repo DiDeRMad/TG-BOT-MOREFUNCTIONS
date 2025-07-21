@@ -6,6 +6,10 @@ const Player_1 = require("./Player");
 class GameRoom {
     constructor() {
         this.players = new Map();
+        /** Game loop at ~20 Hz */
+        this.interval = setInterval(() => {
+            this.tick();
+        }, 50);
     }
     addPlayer(socket) {
         const id = (0, uuid_1.v4)();
@@ -28,10 +32,40 @@ class GameRoom {
             // If not JSON, treat it as plain text
             msg = { text: raw };
         }
-        // For now just broadcast chat message
+        // Chat
         if (typeof msg.text === 'string') {
             this.broadcast({ type: 'chat', from: player.id, text: msg.text });
         }
+        // Movement command { type: 'move', dir: 'up'|'down'|'left'|'right', pressed: true|false }
+        if (msg.type === 'move' && typeof msg.dir === 'string' && typeof msg.pressed === 'boolean') {
+            switch (msg.dir) {
+                case 'up':
+                    player.moveUp = msg.pressed;
+                    break;
+                case 'down':
+                    player.moveDown = msg.pressed;
+                    break;
+                case 'left':
+                    player.moveLeft = msg.pressed;
+                    break;
+                case 'right':
+                    player.moveRight = msg.pressed;
+                    break;
+            }
+        }
+    }
+    tick() {
+        // Update players positions
+        for (const p of this.players.values()) {
+            p.updatePosition();
+        }
+        // Broadcast state to all players
+        const snapshot = Array.from(this.players.values()).map((p) => ({
+            id: p.id,
+            x: Math.round(p.x),
+            y: Math.round(p.y),
+        }));
+        this.broadcast({ type: 'state', players: snapshot });
     }
     broadcast(obj) {
         const data = JSON.stringify(obj);
