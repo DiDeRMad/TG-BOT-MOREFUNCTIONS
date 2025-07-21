@@ -1,0 +1,21 @@
+{
+  "name": "super-online-game-server",
+  "version": "0.1.0",
+  "description": "Prototype server for super online game (WebSocket)",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "uuid": "^9.0.0",
+    "ws": "^8.13.0"
+  },
+  "devDependencies": {
+    "@types/uuid": "^10.0.0",
+    "@types/ws": "^8.18.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.0"
+  }
+}

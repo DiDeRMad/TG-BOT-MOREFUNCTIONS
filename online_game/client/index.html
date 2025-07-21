@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Super Online Game Prototype</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+      #log {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1em;
+        border-bottom: 1px solid #ccc;
+      }
+      #form {
+        display: flex;
+      }
+      #form input {
+        flex: 1;
+        padding: 0.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="log"></div>
+    <form id="form">
+      <input id="input" placeholder="Type message..." autocomplete="off" />
+      <button>Send</button>
+    </form>
+    <script src="client.js"></script>
+  </body>
+</html>
