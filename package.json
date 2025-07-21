@@ -1,0 +1,38 @@
+{
+  "name": "super-online-rpg-game",
+  "version": "1.0.0",
+  "description": "Супер-пупер онлайн RPG игра с многопользовательским режимом",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "cd server && npm run dev",
+    "client:dev": "cd client && npm start",
+    "server:build": "cd server && npm run build",
+    "client:build": "cd client && npm run build",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "start": "npm run server:start",
+    "server:start": "cd server && npm start",
+    "test": "npm run server:test && npm run client:test",
+    "server:test": "cd server && npm test",
+    "client:test": "cd client && npm test"
+  },
+  "keywords": [
+    "game",
+    "rpg",
+    "online",
+    "multiplayer",
+    "react",
+    "nodejs",
+    "socket.io",
+    "mongodb"
+  ],
+  "author": "Super Game Developer",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}
